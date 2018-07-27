@@ -1,21 +1,11 @@
 const path = require("path");
 const router = require("express").Router();
-const articleController = require("../controllers/articleController");
+const apiRoutes = require("./api");
 
-router
-  .route("/articles")
-  .get(articleController.findAll)
-  .post(articleController.create);
+router.use("/api", apiRoutes);
 
-router
-  .route("/articles/:id")
-  .get(articleController.findById)
-  .put(articleController.update)
-  .delete(articleController.remove);
-
-
-router.use((req, res) =>
-  res.sendFile(path.join(__dirname, "../client/build/index.html"))
-);
+router.use(function(req, res) {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
 
 module.exports = router;
