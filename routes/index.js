@@ -1,11 +1,19 @@
 const path = require("path");
 const router = require("express").Router();
-const apiRoutes = require("./api");
+const articleController = require("../controllers/articleController");
 
-// API Routes
-router.use("/api", apiRoutes);
+router
+  .route("/articles")
+  .get(articleController.findAll)
+  .post(articleController.create);
 
-// If no API routes are hit, send the React app
+router
+  .route("/articles/:id")
+  .get(articleController.findById)
+  .put(articleController.update)
+  .delete(articleController.remove);
+
+
 router.use((req, res) =>
   res.sendFile(path.join(__dirname, "../client/build/index.html"))
 );

@@ -19,12 +19,7 @@ app.use(routes);
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/nytarticles",
-  {
-    useMongoClient: true
-  }
-);
+mongoose.connect( process.env.MONGODB_URI || "mongodb://heroku_dd4djrj0:m5p567vhna2g96lba9b75dlsn4@ds141078.mlab.com:41078/heroku_dd4djrj0",{useNewUrlParser: true } );
 
 // Start the API server
 app.listen(PORT, () =>

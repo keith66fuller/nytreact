@@ -16,6 +16,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+    console.log(`CREATE: ${JSON.stringify(req,null,2)}`)
     const article = {
       _id: req.body._id,
       title: req.body.headline.main,
